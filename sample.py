@@ -20,6 +20,12 @@ def add(x, y):
     return x + y
 
 @app.task
+def rand():
+    time.sleep(2)
+    return np.random.randn(1)[0]
+
+
+@app.task
 def model(m):
     print("dddd")
     time.sleep(1)
@@ -52,4 +58,5 @@ def setup_periodic_tasks(sender, **kwargs):
 if __name__ == "__main__":
     #python sample.py worker -l info
     #python sample.py beat -l info
+    #docker run -d -p 6379:6379 redis
     app.start()
